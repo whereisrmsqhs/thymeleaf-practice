@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>main page</title>
+    <style>
+        .thumbnail {
+          width: 300px;
+          display: block;
+        }
+        .search-bar {
+        }
+        .video-template {
+          display: inline-block;
+          width: 300px;
+          border: 5px;
+          border-radius: 3px;
+          border-style: solid;
+          border-color: rgba(121, 121, 121, 0.632);
+        }
+        .video-title {
+          width: 300px;
+        }
+    </style>
+</head>
+<body>
+<input class="search-bar" type="text" placeholder="Search" />
+<div class="video-template">
+    <img
+            class="thumbnail"
+            src="/thumnails/aimyon1.png"
+            th:src="@{/thumnails/aimyon1.png}"
+    />
+    <p class="video-title" th:text="${video1.title}">
+        Talking Tech and AI with Google CEO Sundar Pichai!
+    </p>
+    <p class="video-author" th:text="${video1.author}">Marques Brownlee</p>
+    <p class="video-stats" th:utext="${video1.status}">
+        3.4M views &#183; 6 months ago
+    </p>
+</div>
+</body>
+</html>
