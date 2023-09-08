@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <title>Quiz1</title>
+</head>
+<body>
+<h1>로고보고 어떤 선수인지 맞춰주세요</h1>
+<ul th:each="team : ${quiz1.teams.keySet()}">
+  <li th:text="${team}"></li>
+</ul>
+<form action="quiz1-club-logo.html" th:action method="post">
+  <input type="text" name="answer" id="id"  placeholder="정답" />
+</form>
+</body>
+</html>
