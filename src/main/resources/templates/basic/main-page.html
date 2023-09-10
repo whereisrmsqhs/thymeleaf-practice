@@ -4,26 +4,45 @@
     <meta charset="UTF-8" />
     <title>main page</title>
     <style>
+        body {
+          margin: 0px 0px;
+        }
         .thumbnail {
           width: 300px;
           display: block;
+          border-radius: 5px;
         }
         .search-bar {
         }
         .video-template {
           display: inline-block;
           width: 300px;
-          border: 5px;
-          border-radius: 3px;
-          border-style: solid;
-          border-color: rgba(121, 121, 121, 0.632);
         }
         .video-title {
           width: 300px;
         }
+        .nav-bar {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          padding-top: 30px;
+          padding-bottom: 17px;
+          margin-bottom: 10px;
+          background-color: rgb(181, 180, 179);
+        }
+        .title {
+          margin-left: 12px;
+        }
     </style>
 </head>
 <body>
+<div class="nav-bar">
+    <div class="left-section">
+        <div class="title">축잘알 퀴즈쇼</div>
+
+    </div>
+</div>
+
 <input class="search-bar" type="text" placeholder="Search" />
 <div class="video-template">
     <img
