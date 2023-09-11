@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import thymeleaf.practice.Quiz1;
 import thymeleaf.practice.ThumbnailInfo;
+import thymeleaf.practice.domain.QuizIntro;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -26,12 +27,15 @@ public class BasicController {
     public String mainPage(Model model) {
         ThumbnailInfo Aimyon = new ThumbnailInfo("Aimyon's music", "Aimyon", "3.4M views &#183; 6 months ago");
 
-        model.addAttribute("video1", Aimyon);
+        QuizIntro quizIntro = new QuizIntro();
+        quizIntro.setQuizName("로고보고 선수 맞추기");
+        quizIntro.setQuizDescription("선수가 거쳐간 팀로고들을 보고 어떤 선수인지 맞춰주세요!");
+        model.addAttribute("quizIntro", quizIntro);
 
-        return "basic/main-page";
+        return "footballQuiz/main-pageV1";
     }
 
-    @GetMapping("/quiz1-club-logo")
+    @GetMapping("/quiz1-page-1")
     public String quiz1(Model model) {
         Quiz1 quiz1 = Quiz1.getInstance();
 
@@ -43,9 +47,10 @@ public class BasicController {
 
         model.addAttribute("quiz1", quiz1);
 
-        return "basic/quiz1-club-logo";
+        return "footballQuiz/quiz1-page-1";
     }
 
+    // 오류, 안됨.
     @ResponseBody
     @PostMapping("/quiz1-club-logo")
     public String quiz1(@PathVariable String answer, Model model){
@@ -62,9 +67,8 @@ public class BasicController {
         } else {
             return "틀렸습니다...";
         }
-
     }
-
+    // --------------------------------------------------------------------------------------------------
     // 밑에는 수업 내용, 위에는 내 마음대로 하는 내용
     @GetMapping("/text-basic")
     public String textBasic(Model model) {

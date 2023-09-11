@@ -1,0 +1,52 @@
+@font-face {
+  font-family: "ONE-Mobile-POP";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/ONE-Mobile-POP.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+body {
+  margin: 0px 0px;
+  font-family: "ONE-Mobile-POP";
+  color: #543729;
+  background-color: #f48924;
+}
+.thumbnail {
+  width: 300px;
+  display: block;
+  border-radius: 5px;
+}
+.search-bar {
+}
+.video-template {
+  display: inline-block;
+  width: 300px;
+  padding: 20px 150px;
+}
+.video-title {
+  width: 300px;
+}
+.nav-bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-bottom: 10px;
+  border: 5px;
+  border-style: solid;
+  border-color: #ffcc2f;
+}
+.title {
+  margin-left: 12px;
+}
+
+.quiz-start-btn {
+    font-size: 15px;
+    font-family: "ONE-Mobile-POP";
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    background-color: #ffcc2f;
+
+}
