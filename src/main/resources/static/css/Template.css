@@ -55,5 +55,14 @@ body {
     border-radius: 5px;
     padding: 10px 20px;
     background-color: #ffcc2f;
+    transition: opacity 0.15s;
+    cursor: pointer;
+}
 
+.quiz-start-btn:hover {
+    opacity: 0.8;
+}
+
+.quiz-start-btn:active {
+  opacity: 0.5;
 }
