@@ -11,6 +11,14 @@ body {
   color: #543729;
   background-color: #f48924;
 }
+
+.quiz-thumbnails {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  column-gap: 20px;
+  row-gap: 40px;
+  padding: 20px 30px;
+}
 .thumbnail {
   width: 300px;
   display: block;
@@ -21,7 +29,6 @@ body {
 .video-template {
   display: inline-block;
   width: 300px;
-  padding: 20px 150px;
 }
 .video-title {
   width: 300px;
