@@ -9,6 +9,17 @@
 
 <div class="quiz-content">
     <h3>문제를 푸시오</h3>
+    <ul th:each="team : ${quiz1.teams.keySet()}">
+        <li th:text="${team}"></li>
+    </ul>
+    <form action="quiz1-page1" th:action method="post">
+        <input type="text" name="answer" id="id" th:value="${userAnswer}" placeholder="정답" />
+        <button type="button" placeholder="정답은?">제출</button>
+    </form>
+    <div>
+        <span th:if="${answer == true}">정답입니다!</span>
+        <span th:if="${answer == false}">틀렸습니다!</span>
+    </div>
 </div>
 </body>
 </html>

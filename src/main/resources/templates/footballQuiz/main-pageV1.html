@@ -31,7 +31,7 @@
             Talking Tech and AI with Google CEO Sundar Pichai!
         </p>
         <p class="video-author" th:text="${quizIntro.quizDescription}">Marques Brownlee</p>
-        <button class="quiz-start-btn">퀴즈 시작</button>
+        <button class="quiz-start-btn" type="button" th:onclick="|location.href='@{/basic/quiz-page1}'|">퀴즈 시작</button>
     </div>
     <div class="video-template">
         <img

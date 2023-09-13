@@ -35,7 +35,7 @@ public class BasicController {
         return "footballQuiz/main-pageV1";
     }
 
-    @GetMapping("/quiz1-page-1")
+    @GetMapping("/quiz-page1")
     public String quiz1(Model model) {
         Quiz1 quiz1 = Quiz1.getInstance();
 
@@ -47,7 +47,21 @@ public class BasicController {
 
         model.addAttribute("quiz1", quiz1);
 
-        return "footballQuiz/quiz1-page-1";
+        return "footballQuiz/quiz-page1";
+    }
+
+    @ResponseBody
+    @PostMapping("/quiz-page1")
+    public String quiz1(Model model, @RequestParam("userAnswer") String userAnswer){
+        if(userAnswer=="손흥민"){
+            model.addAttribute("answer", true);
+        }
+        else {
+            model.addAttribute("answer", false);
+        }
+
+//        return "footballQuiz/quiz-page1";
+        return "ok";
     }
 
     // 오류, 안됨.
