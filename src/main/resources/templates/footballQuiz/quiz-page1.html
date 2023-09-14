@@ -13,13 +13,14 @@
         <li th:text="${team}"></li>
     </ul>
     <form action="quiz1-page1" th:action method="post">
-        <input type="text" name="answer" id="id" th:value="${userAnswer}" placeholder="정답" />
+        <input type="text" name="userAnswer" id="id" th:value="${userAnswer}" placeholder="정답" />
         <button type="button" placeholder="정답은?">제출</button>
     </form>
-    <div>
+    <div th:if="${not #strings.isEmpty(answer)}">
         <span th:if="${answer == true}">정답입니다!</span>
-        <span th:if="${answer == false}">틀렸습니다!</span>
+        <span th:unless="${answer == true}">틀렸습니다!</span>
     </div>
+
 </div>
 </body>
 </html>

@@ -4,6 +4,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +19,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Slf4j
 @Controller
 @RequestMapping("/basic")
 public class BasicController {
@@ -50,37 +52,16 @@ public class BasicController {
         return "footballQuiz/quiz-page1";
     }
 
-    @ResponseBody
     @PostMapping("/quiz-page1")
-    public String quiz1(Model model, @RequestParam("userAnswer") String userAnswer){
-        if(userAnswer=="손흥민"){
+    public String quiz1(Model model, @ModelAttribute("quiz1") Quiz1 quiz1, @RequestParam("userAnswer") String userAnswer){
+        if(userAnswer.equals("손흥민")){
             model.addAttribute("answer", true);
         }
         else {
             model.addAttribute("answer", false);
         }
-
-//        return "footballQuiz/quiz-page1";
-        return "ok";
-    }
-
-    // 오류, 안됨.
-    @ResponseBody
-    @PostMapping("/quiz1-club-logo")
-    public String quiz1(@PathVariable String answer, Model model){
-        Quiz1 quiz1 = Quiz1.getInstance();
-
-        quiz1.save("함부르크SV");
-        quiz1.save("바이어 04 레버쿠젠");
-        quiz1.save("토트넘 훗스퍼");
-        quiz1.setAnswer("손흥민");
-        quiz1.setTeamNum(3);
-
-        if(answer.equals("손흥민")){
-            return "정답입니다!!";
-        } else {
-            return "틀렸습니다...";
-        }
+        log.info("userAnswer = {}", userAnswer);
+        return "footballQuiz/quiz-page1";
     }
     // --------------------------------------------------------------------------------------------------
     // 밑에는 수업 내용, 위에는 내 마음대로 하는 내용
