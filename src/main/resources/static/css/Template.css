@@ -20,18 +20,19 @@ body {
   padding: 20px 30px;
 }
 .thumbnail {
-  width: 300px;
+  width: 270px;
   display: block;
   border-radius: 5px;
+  object-fit: cover;
 }
 .search-bar {
 }
 .video-template {
   display: inline-block;
-  width: 300px;
+  width: 270px;
 }
 .video-title {
-  width: 300px;
+  width: 270px;
 }
 .nav-bar {
   display: flex;
@@ -44,8 +45,18 @@ body {
   border-style: solid;
   border-color: #ffcc2f;
 }
+
+.left-section {
+  width: 450px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
 .title {
+  font-size: 25px;
   margin-left: 12px;
+  margin-right: 15px;
 }
 
 .quiz-start-btn {
@@ -65,4 +76,10 @@ body {
 
 .quiz-start-btn:active {
   opacity: 0.5;
+}
+
+footer {
+    position: absolute;
+    bottom: 10px;
+    padding-left: 30px;
 }
