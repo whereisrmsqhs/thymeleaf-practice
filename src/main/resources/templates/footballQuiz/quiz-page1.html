@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html th:replace="~{footballQuiz/template :: layout(~{::title},
-  ~{:: div.quiz-content})}"
+  ~{::div.quiz-content}, ~{::link})}"
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>quiz-page-1</title>
+    <link rel="stylesheet" type="text/css", href="/css/quiz-page1.css">
 </head>
 <body>
 
@@ -13,7 +14,7 @@
         <li th:text="${team}"></li>
     </ul>
     <form action="quiz1-page1" th:action method="post">
-        <input type="text" name="userAnswer" id="id" th:value="${userAnswer}" placeholder="정답" />
+        <input type="text" name="userAnswer" id="id" th:value="${userAnswer}" autocomplete="off" placeholder="정답" />
         <button type="button" placeholder="정답은?">제출</button>
     </form>
     <div th:if="${not #strings.isEmpty(answer)}">

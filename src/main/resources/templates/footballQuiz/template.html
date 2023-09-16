@@ -1,9 +1,11 @@
 <!DOCTYPE html>
-<html th:fragment="layout (title, div)" xmlns:th="http://www.thymeleaf.org">
+<html th:fragment="layout (title, div, link)" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8" />
-    <title th:replace="${title}">레이아웃 타이틀</title> </head>
+    <title th:replace="${title}">레이아웃 타이틀</title>
     <link rel="stylesheet" type="text/css" href="/css/Template.css">
+    <link th:replace="${link}">
+</head>
 <body>
     <div class="nav-bar">
         <div class="left-section">
