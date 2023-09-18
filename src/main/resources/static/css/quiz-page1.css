@@ -1,3 +1,29 @@
 .quiz-content {
     margin: 10px 30px;
 }
+
+.quiz-question {
+  clear: both;
+}
+
+ul {
+  list-style: none;
+}
+
+li {
+  float: left;
+  margin-right: 10px;
+  /*여기 간격은 반응형으로 바꿔줘야됨*/
+}
+
+li:after {
+  content: " -> ";
+}
+
+li:last-child:after {
+  content: none;
+}
+
+.user-answer {
+  display: block;
+}

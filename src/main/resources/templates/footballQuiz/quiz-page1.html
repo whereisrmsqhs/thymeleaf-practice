@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html th:replace="~{footballQuiz/template :: layout(~{::title},
-  ~{::div.quiz-content}, ~{::link})}"
+  ~{::main}, ~{::link})}"
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>quiz-page-1</title>
@@ -8,20 +8,25 @@
 </head>
 <body>
 
-<div class="quiz-content">
-    <h3>문제를 푸시오</h3>
-    <ul th:each="team : ${quiz1.teams.keySet()}">
-        <li th:text="${team}"></li>
-    </ul>
-    <form action="quiz1-page1" th:action method="post">
-        <input type="text" name="userAnswer" id="id" th:value="${userAnswer}" autocomplete="off" placeholder="정답" />
-        <button type="button" placeholder="정답은?">제출</button>
-    </form>
-    <div th:if="${not #strings.isEmpty(answer)}">
-        <span th:if="${answer == true}">정답입니다!</span>
-        <span th:unless="${answer == true}">틀렸습니다!</span>
+<main class="quiz-content">
+    <div class="quiz-question">
+        <h3>문제를 푸시오</h3>
+        <ul>
+            <li th:each="team : ${quiz1.teams.keySet()}" th:text="${team}"></li>
+        </ul>
     </div>
 
-</div>
+    <div class="user-answer">
+        <form action="quiz1-page1" th:action method="post">
+            <input type="text" name="userAnswer" id="id" th:value="${userAnswer}" autocomplete="off" placeholder="정답" />
+            <button type="submit" placeholder="정답은?">제출</button>
+        </form>
+        <div th:if="${not #strings.isEmpty(answer)}">
+            <span th:if="${answer == true}">정답입니다!</span>
+            <span th:unless="${answer == true}">틀렸습니다!</span>
+        </div>
+    </div>
+
+</main>
 </body>
 </html>

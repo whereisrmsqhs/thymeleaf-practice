@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html th:fragment="layout (title, div, link)" xmlns:th="http://www.thymeleaf.org">
+<html th:fragment="layout (title, main, link)" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8" />
     <title th:replace="${title}">레이아웃 타이틀</title>
@@ -15,8 +15,8 @@
             <div>의견남기기</div>
         </div>
     </div>
-    <div th:replace="${div}"> <p>레이아웃 컨텐츠</p>
-    </div>
+    <main th:replace="${main}"> <p>레이아웃 컨텐츠</p>
+    </main>
     <footer>
         레이아웃 푸터
     </footer>

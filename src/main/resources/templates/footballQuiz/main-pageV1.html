@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html th:replace="~{footballQuiz/template :: layout(~{::title},
-  ~{:: div.quiz-thumbnails}, ~{:: link})}"
+  ~{:: main}, ~{:: link})}"
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>main page</title>
@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<div class="quiz-thumbnails">
+<main class="quiz-thumbnails">
     <div class="video-template">
         <img
                 class="thumbnail"
@@ -47,6 +47,6 @@
         <button class="quiz-start-btn">퀴즈 시작</button>
     </div>
 
-</div>
+</main>
 </body>
 </html>
