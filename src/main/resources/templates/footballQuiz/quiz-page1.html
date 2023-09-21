@@ -19,7 +19,7 @@
     <br><br>
     <div class="user-answer">
         <form action="quiz1-page1" th:action method="post">
-            <input type="text" name="userAnswer" id="id" th:value="${userAnswer}" autocomplete="off" placeholder="정답" />
+            <input type="text" name="userAnswer" id="id" th:value="${userAnswer}" autocomplete="off" placeholder="정답은???" />
             <button type="submit" placeholder="정답은?">제출</button>
         </form>
         <div th:if="${not #strings.isEmpty(answer)}">

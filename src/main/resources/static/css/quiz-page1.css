@@ -36,3 +36,34 @@ li:last-child:after {
 .user-answer {
   display: block;
 }
+
+/*
+    추후에 input+버튼 width크기는 보여줄 이미지의 최소 사이즈 기준으로 맞추는 걸로 합시다.
+*/
+input {
+  font-size: 15px;
+  width: 250px;
+  border-radius: 150px;
+  padding: 5px 8px;
+  border: none;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.05);
+  margin-right: 9px;
+}
+
+button {
+  height: 27px;
+  width: 40px;
+  background-color: #ffcc2f;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+
+button.hover {
+  opacity: 0.8s;
+}
+
+button.active {
+  opacity: 0.5s;
+}
