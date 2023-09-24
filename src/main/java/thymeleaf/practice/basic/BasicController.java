@@ -10,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import thymeleaf.practice.Quiz1;
-import thymeleaf.practice.ThumbnailInfo;
 import thymeleaf.practice.domain.QuizIntro;
 
 import java.time.LocalDateTime;
@@ -27,7 +26,6 @@ public class BasicController {
 
     @GetMapping("/main-page")
     public String mainPage(Model model) {
-        ThumbnailInfo Aimyon = new ThumbnailInfo("Aimyon's music", "Aimyon", "3.4M views &#183; 6 months ago");
 
         QuizIntro quizIntro = new QuizIntro();
         quizIntro.setQuizName("로고보고 선수 맞추기");
@@ -63,6 +61,13 @@ public class BasicController {
         log.info("userAnswer = {}", userAnswer);
         return "footballQuiz/quiz-page1";
     }
+
+    @GetMapping("/make-quiz1")
+    public String makeQuiz1(Model model){
+        return "footballQuiz/make-quiz1";
+    }
+
+
     // --------------------------------------------------------------------------------------------------
     // 밑에는 수업 내용, 위에는 내 마음대로 하는 내용
     @GetMapping("/text-basic")
