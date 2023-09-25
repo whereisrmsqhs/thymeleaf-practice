@@ -18,6 +18,5 @@ public class Quiz1 {
 
     public void save(String teamName) {
         teams.put(teamName, teamName);
-
     }
 }
