@@ -9,7 +9,9 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import thymeleaf.practice.Quiz1;
+import thymeleaf.practice.Quiz1Repo;
 import thymeleaf.practice.domain.QuizIntro;
 
 import java.time.LocalDateTime;
@@ -23,6 +25,7 @@ import java.util.Map;
 @RequestMapping("/basic")
 public class BasicController {
 
+    Quiz1Repo quiz1Repo = Quiz1Repo.getInstance();
 
     @GetMapping("/main-page")
     public String mainPage(Model model) {
@@ -37,7 +40,7 @@ public class BasicController {
 
     @GetMapping("/quiz-page1")
     public String quiz1(Model model) {
-        Quiz1 quiz1 = Quiz1.getInstance();
+        Quiz1 quiz1 = new Quiz1();
 
         quiz1.save("함부르크SV");
         quiz1.save("바이어 04 레버쿠젠");
@@ -65,6 +68,37 @@ public class BasicController {
     @GetMapping("/make-quiz1")
     public String makeQuiz1(Model model){
         return "footballQuiz/make-quiz1";
+    }
+
+    @PostMapping("/make-quiz1")
+    public String makeQuiz1(@RequestParam Map<String, Object> paramMap, RedirectAttributes redirectAttributes){
+
+        log.info("paramMap.get(answer)={}", paramMap.get("answer"));
+        log.info("paramMap.get(teamName1)={}", paramMap.get("teamName2"));
+        Quiz1 quiz1 = new Quiz1();
+        int teamCount = 0;
+        for (String s : paramMap.keySet()) {
+            if(s.equals("answer")){
+                quiz1.setAnswer((String) paramMap.get(s));
+                continue;
+            }
+            quiz1.save((paramMap.get(s)).toString());
+            teamCount++;
+        }
+        quiz1.setTeamNum(teamCount);
+        quiz1Repo.save(quiz1);
+
+        log.info("quiz1={}", quiz1);
+
+        redirectAttributes.addAttribute("answer", quiz1.getAnswer());
+        redirectAttributes.addAttribute("status", true);
+        return "redirect:quiz1/{answer}";
+    }
+
+    @GetMapping("/quiz1/{answer}")
+    public String quiz1List(@PathVariable String answer, Model model){
+        model.addAttribute("answer", answer);
+        return "footballQuiz/quiz1";
     }
 
 
