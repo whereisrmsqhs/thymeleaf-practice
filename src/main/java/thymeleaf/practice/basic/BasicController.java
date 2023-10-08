@@ -10,9 +10,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import thymeleaf.practice.Quiz1;
-import thymeleaf.practice.Quiz1Repo;
-import thymeleaf.practice.domain.QuizIntro;
+import thymeleaf.practice.domain.quizType1.quizType1EachQuestion;
+import thymeleaf.practice.domain.quizType1.quizType1Repo;
+import thymeleaf.practice.domain.quizType1.quizType1Description;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -25,36 +25,41 @@ import java.util.Map;
 @RequestMapping("/basic")
 public class BasicController {
 
-    Quiz1Repo quiz1Repo = Quiz1Repo.getInstance();
+    quizType1Repo quizType1Repo = thymeleaf.practice.domain.quizType1.quizType1Repo.getInstance();
+    @ModelAttribute("description")
+    public quizType1Description description(){
+        String quizName = "로고 보고 선수 맞추기";
+        String quizDescription = "선수가 거쳐간 팀로고들을 보고 어떤 선수인지 맞춰주세요!\n 문제가 시작되면 화면 중간에 특정 선수가 거쳐간 " +
+                "클럽의 로고들이 경력 순서에 맞게 나타납니다. 해당 커리어를 바탕으로 어떤 선수인지 맞춰주세요!";
+        String quizRule = "주어진 시간안에 맞히면 1점, 시간이 초과되거나 입력한 답이 틀렸을 시 0점입니다.";
+        String briefIntro = "선수가 거쳐간 팀로고들을 보고 어떤 선수인지 맞춰주세요!";
+        quizType1Description des = new quizType1Description(quizName, quizDescription, quizRule, briefIntro);
+        return des;
+    }
 
     @GetMapping("/main-page")
     public String mainPage(Model model) {
-
-        QuizIntro quizIntro = new QuizIntro();
-        quizIntro.setQuizName("로고보고 선수 맞추기");
-        quizIntro.setQuizDescription("선수가 거쳐간 팀로고들을 보고 어떤 선수인지 맞춰주세요!");
-        model.addAttribute("quizIntro", quizIntro);
 
         return "footballQuiz/main-pageV1";
     }
 
     @GetMapping("/quiz-page1")
     public String quiz1(Model model) {
-        Quiz1 quiz1 = new Quiz1();
+        quizType1EachQuestion quizType1EachQuestion = new quizType1EachQuestion();
 
-        quiz1.save("함부르크SV");
-        quiz1.save("바이어 04 레버쿠젠");
-        quiz1.save("토트넘 훗스퍼");
-        quiz1.setAnswer("손흥민");
-        quiz1.setTeamNum(3);
+        quizType1EachQuestion.save("함부르크SV");
+        quizType1EachQuestion.save("바이어 04 레버쿠젠");
+        quizType1EachQuestion.save("토트넘 훗스퍼");
+        quizType1EachQuestion.setAnswer("손흥민");
+        quizType1EachQuestion.setTeamNum(3);
 
-        model.addAttribute("quiz1", quiz1);
+        model.addAttribute("quiz1", quizType1EachQuestion);
 
         return "footballQuiz/quiz-page1";
     }
 
     @PostMapping("/quiz-page1")
-    public String quiz1(Model model, @ModelAttribute("quiz1") Quiz1 quiz1, @RequestParam("userAnswer") String userAnswer){
+    public String quiz1(Model model, @ModelAttribute("quiz1") quizType1EachQuestion quizType1EachQuestion, @RequestParam("userAnswer") String userAnswer){
         if(userAnswer.equals("손흥민")){
             model.addAttribute("answer", true);
         }
@@ -73,24 +78,22 @@ public class BasicController {
     @PostMapping("/make-quiz1")
     public String makeQuiz1(@RequestParam Map<String, Object> paramMap, RedirectAttributes redirectAttributes){
 
-        log.info("paramMap.get(answer)={}", paramMap.get("answer"));
-        log.info("paramMap.get(teamName1)={}", paramMap.get("teamName2"));
-        Quiz1 quiz1 = new Quiz1();
+        quizType1EachQuestion quizType1EachQuestion = new quizType1EachQuestion();
         int teamCount = 0;
         for (String s : paramMap.keySet()) {
             if(s.equals("answer")){
-                quiz1.setAnswer((String) paramMap.get(s));
+                quizType1EachQuestion.setAnswer((String) paramMap.get(s));
                 continue;
             }
-            quiz1.save((paramMap.get(s)).toString());
+            quizType1EachQuestion.save((paramMap.get(s)).toString());
             teamCount++;
         }
-        quiz1.setTeamNum(teamCount);
-        quiz1Repo.save(quiz1);
+        quizType1EachQuestion.setTeamNum(teamCount);
+        quizType1Repo.save(quizType1EachQuestion);
 
-        log.info("quiz1={}", quiz1);
+        log.info("quiz1={}", quizType1EachQuestion);
 
-        redirectAttributes.addAttribute("answer", quiz1.getAnswer());
+        redirectAttributes.addAttribute("answer", quizType1EachQuestion.getAnswer());
         redirectAttributes.addAttribute("status", true);
         return "redirect:quiz1/{answer}";
     }
